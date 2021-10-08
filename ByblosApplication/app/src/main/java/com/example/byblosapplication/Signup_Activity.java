@@ -42,18 +42,9 @@ public class Signup_Activity extends AppCompatActivity {
 
         if (customerBtn.isChecked()){
             Customer customer = new Customer(firstName,lastName,dateOfBirth,homeAddress,email,Integer.parseInt(age),username,password);
-           // Register(customer);
-          //  startActivity(new Intent(Signup_Activity.this, MainActivity.class));
         }
         else if (employeeBtn.isChecked()){
             startActivity(new Intent(Signup_Activity.this, EmployeeNumber_Activity.class));
         }
-    }
-
-
-    public void Register(Person p){
-        FirebaseDatabase dataBase = FirebaseDatabase.getInstance();
-        DatabaseReference newUser = dataBase.getReference("users/" + p);
-        newUser.setValue(p);
     }
 }

@@ -3,6 +3,7 @@ package com.example.byblosapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class Welcome_Activity extends AppCompatActivity {
 
@@ -11,4 +12,6 @@ public class Welcome_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
     }
+
+    TextView welcomeUser = (TextView) findViewById(R.id.welcomeUser);
 }
