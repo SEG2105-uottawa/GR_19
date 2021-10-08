@@ -5,6 +5,6 @@ public class Administrator {
     String password;
     public Administrator(){
         username = "admin";
-        password = "password";
+        password = "admin";
     }
 }
