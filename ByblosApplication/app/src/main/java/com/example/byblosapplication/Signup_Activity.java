@@ -28,20 +28,21 @@ public class Signup_Activity extends AppCompatActivity {
     String password;
 
     public void onClick(View view){
-        firstName = findViewById(R.id.firstName).toString();
-        lastName = findViewById(R.id.lastName).toString();
-        email = findViewById(R.id.email).toString();
-        homeAddress = findViewById(R.id.homeAddress).toString();
-        age = findViewById(R.id.age).toString();
-        dateOfBirth = findViewById(R.id.dateOfBirth).toString();
-        username = findViewById(R.id.username).toString();
-        password = findViewById(R.id.password).toString();
+        firstName = findViewById(R.id.firstName).toString().trim();
+        lastName = findViewById(R.id.lastName).toString().trim();
+        email = findViewById(R.id.email).toString().trim();
+        homeAddress = findViewById(R.id.homeAddress).toString().trim();
+        age = findViewById(R.id.age).toString().trim();
+        dateOfBirth = findViewById(R.id.dateOfBirth).toString().trim();
+        username = findViewById(R.id.username).toString().trim();
+        password = findViewById(R.id.password).toString().trim();
 
         RadioButton customerBtn = (RadioButton) findViewById(R.id.customer);
         RadioButton employeeBtn = (RadioButton) findViewById(R.id.employee);
 
         if (customerBtn.isChecked()){
-            Customer customer = new Customer(firstName,lastName,dateOfBirth,homeAddress,email,Integer.parseInt(age),username,password);
+            Customer customer = new Customer(firstName,lastName,dateOfBirth,homeAddress,email,age,username,password);
+            startActivity(new Intent(Signup_Activity.this,Login_Activity.class));
         }
         else if (employeeBtn.isChecked()){
             startActivity(new Intent(Signup_Activity.this, EmployeeNumber_Activity.class));

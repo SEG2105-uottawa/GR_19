@@ -6,8 +6,8 @@ public class Person {
     String dateOfBirth;
     String homeAddress;
     String emailAddress;
-    int age;
-    public Person(String firstName,String lastName,String dateOfBirth,String homeAddress,String emailAddress, int age){
+    String age;
+    public Person(String firstName,String lastName,String dateOfBirth,String homeAddress,String emailAddress, String age){
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;

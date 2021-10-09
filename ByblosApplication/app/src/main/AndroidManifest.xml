@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ByblosApplication">
         <activity
+            android:name=".Login_Activity"
+            android:exported="true" />
+        <activity
             android:name=".Welcome_Activity"
             android:exported="true" />
         <activity

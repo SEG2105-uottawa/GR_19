@@ -14,4 +14,5 @@ public class Welcome_Activity extends AppCompatActivity {
     }
 
     TextView welcomeUser = (TextView) findViewById(R.id.welcomeUser);
+   // welcomeUser.setText("Welcome " + firstName + "! " + "You are logged in as \"" + role +"\"");
 }
