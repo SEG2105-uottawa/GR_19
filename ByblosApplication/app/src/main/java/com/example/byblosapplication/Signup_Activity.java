@@ -20,6 +20,7 @@ public class Signup_Activity extends AppCompatActivity {
     }
     String firstName;
     String lastName;
+
     String email;
     String homeAddress;
     String age;
@@ -47,5 +48,37 @@ public class Signup_Activity extends AppCompatActivity {
         else if (employeeBtn.isChecked()){
             startActivity(new Intent(Signup_Activity.this, EmployeeNumber_Activity.class));
         }
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getHomeAddress() {
+        return homeAddress;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
