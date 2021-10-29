@@ -9,76 +9,58 @@ import android.widget.*;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
 
-import com.google.firebase.database.*;
-
 public class Signup_Activity extends AppCompatActivity {
 
+    DatabaseReference databaseAccounts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        databaseAccounts = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("accounts");
     }
     String firstName;
     String lastName;
-
     String email;
     String homeAddress;
-    String age;
+    int age;
     String dateOfBirth;
     String username;
     String password;
+    int employeeNum;
+    String id;
 
     public void onClick(View view){
-        firstName = findViewById(R.id.firstName).toString().trim();
-        lastName = findViewById(R.id.lastName).toString().trim();
-        email = findViewById(R.id.email).toString().trim();
-        homeAddress = findViewById(R.id.homeAddress).toString().trim();
-        age = findViewById(R.id.age).toString().trim();
-        dateOfBirth = findViewById(R.id.dateOfBirth).toString().trim();
-        username = findViewById(R.id.username).toString().trim();
-        password = findViewById(R.id.password).toString().trim();
+        firstName = ((EditText)findViewById(R.id.editTextFirstName)).getText().toString().trim();
+        lastName = ((EditText)findViewById(R.id.editTextLastName)).getText().toString().trim();
+        email = ((EditText)findViewById(R.id.editTextEmail)).getText().toString().trim();
+        homeAddress = ((EditText)findViewById(R.id.editTextHomeAddress)).getText().toString().trim();
+
+        age = Integer.parseInt(((EditText)findViewById(R.id.editTextAge)).getText().toString());
+
+        dateOfBirth = ((EditText)findViewById(R.id.editTextDOB)).getText().toString().trim();
+        username = ((EditText)findViewById(R.id.editTextUsername)).getText().toString().trim();
+        password = ((EditText)findViewById(R.id.editTextPassword)).getText().toString().trim();
 
         RadioButton customerBtn = (RadioButton) findViewById(R.id.customer);
         RadioButton employeeBtn = (RadioButton) findViewById(R.id.employee);
 
+        String id = databaseAccounts.push().getKey();
+
         if (customerBtn.isChecked()){
             Customer customer = new Customer(firstName,lastName,dateOfBirth,homeAddress,email,age,username,password);
+            databaseAccounts.child(id).setValue(customer);
             startActivity(new Intent(Signup_Activity.this,Login_Activity.class));
         }
         else if (employeeBtn.isChecked()){
-            startActivity(new Intent(Signup_Activity.this, EmployeeNumber_Activity.class));
+            EditText eN = (EditText)findViewById(R.id.editTextEmployeeNum);
+            String eNString = eN.getText().toString();
+            employeeNum = Integer.parseInt(eNString);
+
+            Employee employee = new Employee(firstName,lastName,dateOfBirth,homeAddress,email,age,username,password, employeeNum);
+
+            databaseAccounts.child(id).setValue(employee);
+            startActivity(new Intent(Signup_Activity.this,Login_Activity.class));
         }
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getHomeAddress() {
-        return homeAddress;
-    }
-
-    public String getAge() {
-        return age;
-    }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
 }

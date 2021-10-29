@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/firstName"
+            android:id="@+id/editTextFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -21,7 +21,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/lastName"
+            android:id="@+id/editTextLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -30,7 +30,7 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -39,7 +39,7 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/homeAddress"
+            android:id="@+id/editTextHomeAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -48,7 +48,7 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/age"
+            android:id="@+id/editTextAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -57,7 +57,7 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/dateOfBirth"
+            android:id="@+id/editTextDOB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -66,7 +66,7 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -75,7 +75,7 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -105,6 +105,14 @@
                 android:text="Employee" />
 
         </RadioGroup>
+
+        <EditText
+            android:id="@+id/editTextEmployeeNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Employee Number (If applicable)"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/button"
