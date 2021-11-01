@@ -56,12 +56,10 @@ public class Login_Activity extends AppCompatActivity {
                             user.putExtra("password",userSnapshot.child("password").getValue(String.class));
                             user.putExtra("role",userSnapshot.child("role").getValue(String.class));
                             if (userSnapshot.child("role").getValue(String.class).equals("employee")){
-                                user.putExtra("employeeID",userSnapshot.child("employeeID").getValue(String.class));
+                                user.putExtra("employeeID",userSnapshot.child("employeeID").getValue(Integer.class));
                             }
                             startActivity(user);
 
-                        }else{
-                            Toast.makeText(Login_Activity.this, "Wrong username or password", Toast.LENGTH_SHORT).show();
                         }
                     }
 
