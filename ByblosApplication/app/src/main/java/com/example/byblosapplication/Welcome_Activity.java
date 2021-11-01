@@ -18,8 +18,13 @@ public class Welcome_Activity extends AppCompatActivity {
         databaseAccounts = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("accounts");
 
         //Set the loggedUser
-        loggedUser = null;
         Bundle extras = getIntent().getExtras();
+
+        if (extras.getString("id").equals("admin")){
+            loggedUser = new Admin("admin","admin","admin","admin");
+            Toast.makeText(Welcome_Activity.this,"Welcome " + loggedUser.username + "! " + "You are logged in as a \"" + loggedUser.role +"\"", Toast.LENGTH_SHORT).show();
+        }
+
         databaseAccounts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

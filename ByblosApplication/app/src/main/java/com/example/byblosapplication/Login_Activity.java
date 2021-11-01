@@ -32,28 +32,34 @@ public class Login_Activity extends AppCompatActivity {
     }
 
     public void Login(View view){
-        databaseAccounts.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot userSnapshot: snapshot.getChildren()){
-                    String username = userSnapshot.child("username").getValue(String.class);
-                    String password = userSnapshot.child("password").getValue(String.class);
-                    if (username.equals(editTextUsernameSN.getText().toString().trim()) && password.equals(editTextPasswordSN.getText().toString().trim())){
-                        Intent user = new Intent(Login_Activity.this, Welcome_Activity.class);
-                        user.putExtra("id", userSnapshot.child("id").getValue(String.class));
-                        startActivity(user);
+        if (editTextUsernameSN.getText().toString().trim().equals("admin") && editTextPasswordSN.getText().toString().trim().equals("admin")){
+            Intent user = new Intent(Login_Activity.this, Welcome_Activity.class);
+            user.putExtra("id", "admin");
+            startActivity(user);
+        }else{
+            databaseAccounts.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot userSnapshot: snapshot.getChildren()){
+                        String username = userSnapshot.child("username").getValue(String.class);
+                        String password = userSnapshot.child("password").getValue(String.class);
+                        if (username.equals(editTextUsernameSN.getText().toString().trim()) && password.equals(editTextPasswordSN.getText().toString().trim())){
+                            Intent user = new Intent(Login_Activity.this, Welcome_Activity.class);
+                            user.putExtra("id", userSnapshot.child("id").getValue(String.class));
+                            startActivity(user);
 
-                    }else{
-                        Toast.makeText(Login_Activity.this, "Wrong username or password", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(Login_Activity.this, "Wrong username or password", Toast.LENGTH_SHORT).show();
+                        }
                     }
+
                 }
 
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+                }
+            });
+        }
     }
 }

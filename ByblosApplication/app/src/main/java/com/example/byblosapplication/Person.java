@@ -11,6 +11,7 @@ public class Person {
     public String password;
     public String id;
     public String role;
+
     public Person(String firstName,String lastName,String dateOfBirth,String homeAddress,String emailAddress, int age, String username, String password, String id, String role){
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,6 +22,13 @@ public class Person {
         this.username = username;
         this.password = password;
         this.id =id;
+        this.role = role;
+    }
+
+    public Person(String username, String password, String id, String role){
+        this.username = username;
+        this.password = password;
+        this.id = id;
         this.role = role;
     }
 }
