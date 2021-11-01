@@ -10,6 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical"/>
+        android:orientation="vertical">
 
+        <Button
+            android:id="@+id/adminBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="AdminButton"
+            android:text="Admin" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

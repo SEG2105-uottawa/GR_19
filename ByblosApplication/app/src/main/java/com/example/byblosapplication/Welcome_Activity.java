@@ -3,7 +3,9 @@ package com.example.byblosapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.*;
 
 import com.google.firebase.database.*;
@@ -16,7 +18,7 @@ public class Welcome_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         databaseAccounts = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("accounts");
-        
+
         Bundle extras = getIntent().getExtras();
         //Set the loggedUser
         if (extras.getString("id").equals("admin")){
@@ -40,5 +42,13 @@ public class Welcome_Activity extends AppCompatActivity {
             }
         }
         Toast.makeText(Welcome_Activity.this,"Welcome " + loggedUser.username + "! " + "You are logged in as a \"" + loggedUser.role +"\"", Toast.LENGTH_SHORT).show();
+    }
+
+    public void AdminButton(View view){
+        if (loggedUser.role.equals("admin")){
+            startActivity(new Intent(Welcome_Activity.this, AdminPage_Activity.class));
+        }else{
+            Toast.makeText(Welcome_Activity.this,"You are not a admin", Toast.LENGTH_SHORT).show();
+        }
     }
 }
