@@ -46,6 +46,18 @@ public class Login_Activity extends AppCompatActivity {
                         if (username.equals(editTextUsernameSN.getText().toString().trim()) && password.equals(editTextPasswordSN.getText().toString().trim())){
                             Intent user = new Intent(Login_Activity.this, Welcome_Activity.class);
                             user.putExtra("id", userSnapshot.child("id").getValue(String.class));
+                            user.putExtra("firstName",userSnapshot.child("firstName").getValue(String.class));
+                            user.putExtra("lastName",userSnapshot.child("lastName").getValue(String.class));
+                            user.putExtra("dateOfBirth",userSnapshot.child("dateOfBirth").getValue(String.class));
+                            user.putExtra("homeAddress",userSnapshot.child("homeAddress").getValue(String.class));
+                            user.putExtra("emailAddress",userSnapshot.child("emailAddress").getValue(String.class));
+                            user.putExtra("age",userSnapshot.child("age").getValue(Integer.class));
+                            user.putExtra("username",userSnapshot.child("username").getValue(String.class));
+                            user.putExtra("password",userSnapshot.child("password").getValue(String.class));
+                            user.putExtra("role",userSnapshot.child("role").getValue(String.class));
+                            if (userSnapshot.child("role").getValue(String.class).equals("employee")){
+                                user.putExtra("employeeID",userSnapshot.child("employeeID").getValue(String.class));
+                            }
                             startActivity(user);
 
                         }else{
