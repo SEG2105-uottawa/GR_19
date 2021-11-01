@@ -44,10 +44,10 @@ public class Signup_Activity extends AppCompatActivity {
         RadioButton customerBtn = (RadioButton) findViewById(R.id.customer);
         RadioButton employeeBtn = (RadioButton) findViewById(R.id.employee);
 
-        String id = databaseAccounts.push().getKey();
+        id = databaseAccounts.push().getKey();
 
         if (customerBtn.isChecked()){
-            Customer customer = new Customer(firstName,lastName,dateOfBirth,homeAddress,email,age,username,password);
+            Customer customer = new Customer(firstName,lastName,dateOfBirth,homeAddress,email,age,username,password,id, "customer");
             databaseAccounts.child(id).setValue(customer);
             startActivity(new Intent(Signup_Activity.this,Login_Activity.class));
         }
@@ -56,7 +56,7 @@ public class Signup_Activity extends AppCompatActivity {
             String eNString = eN.getText().toString();
             employeeNum = Integer.parseInt(eNString);
 
-            Employee employee = new Employee(firstName,lastName,dateOfBirth,homeAddress,email,age,username,password, employeeNum);
+            Employee employee = new Employee(firstName,lastName,dateOfBirth,homeAddress,email,age,username,password,id,"employee" ,employeeNum);
 
             databaseAccounts.child(id).setValue(employee);
             startActivity(new Intent(Signup_Activity.this,Login_Activity.class));

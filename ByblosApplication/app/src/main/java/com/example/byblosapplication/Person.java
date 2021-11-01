@@ -9,7 +9,9 @@ public class Person {
     public int age;
     public String username;
     public String password;
-    public Person(String firstName,String lastName,String dateOfBirth,String homeAddress,String emailAddress, int age, String username, String password){
+    public String id;
+    public String role;
+    public Person(String firstName,String lastName,String dateOfBirth,String homeAddress,String emailAddress, int age, String username, String password, String id, String role){
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -18,5 +20,7 @@ public class Person {
         this.age = age;
         this.username = username;
         this.password = password;
+        this.id =id;
+        this.role = role;
     }
 }
