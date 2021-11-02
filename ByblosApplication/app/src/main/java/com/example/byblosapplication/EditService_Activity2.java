@@ -23,6 +23,6 @@ public class EditService_Activity2 extends AppCompatActivity {
         String id = extras.getString("id");
         String name = ((EditText)findViewById(R.id.changeServiceName)).getText().toString().trim();
         databaseServices.child(id).child("name").setValue(name);
-        Toast.makeText(AddService_Activity2.this,"Edited Service", Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditService_Activity2.this,"Edited Service", Toast.LENGTH_SHORT).show();
     }
 }
