@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddService_Activity">
+    tools:context=".EditService_Activity2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,18 +13,18 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/serviceName"
-            android:layout_width="wrap_content"
+            android:id="@+id/changeServiceName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Enter Service Name"
+            android:hint="Change Service Name"
             android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/deleteServiceBtn"
+            android:id="@+id/editBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="AddService"
-            android:text="Add Service" />
+            android:onClick="EditService"
+            android:text="Edit" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
