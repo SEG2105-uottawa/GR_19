@@ -25,7 +25,6 @@ public class DeleteBranchAccount_Activity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot userSnapshot: snapshot.getChildren()){
-                    System.out.println(userSnapshot.child("employeeID").getValue(int.class));
                     if (userSnapshot.child("role").getValue(String.class).equals("employee")){
                         if (userSnapshot.child("employeeID").getValue(int.class).equals(employeeNum)){
                             userSnapshot.getRef().removeValue();
