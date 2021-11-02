@@ -6,4 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".EditService_Activity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/serviceNameBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Enter the name of the service you would like to edit"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/findService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="EditService"
+            android:text="Find Service" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@ public class DeleteService_Activity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot userSnapshot : snapshot.getChildren()){
-                    if (userSnapshot.child("serviceName").getValue(String.class).equals(serviceName)){
+                    if (userSnapshot.child("name").getValue(String.class).equals(serviceName)){
                         userSnapshot.getRef().removeValue();
                         Toast.makeText(DeleteService_Activity.this,"Deleted Service", Toast.LENGTH_SHORT).show();
                     }

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ByblosApplication">
         <activity
+            android:name=".EditService_Activity2"
+            android:exported="true" />
+        <activity
             android:name=".DeleteBranchAccount_Activity"
             android:exported="true" />
         <activity
