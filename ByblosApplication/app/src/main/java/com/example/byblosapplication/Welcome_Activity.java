@@ -49,7 +49,7 @@ public class Welcome_Activity extends AppCompatActivity {
         if (loggedUser.role.equals("admin")){
             startActivity(new Intent(Welcome_Activity.this, AdminPage_Activity.class));
         }else{
-            Toast.makeText(Welcome_Activity.this,"You are not a admin", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Welcome_Activity.this,"You are not an admin", Toast.LENGTH_SHORT).show();
         }
     }
 }
