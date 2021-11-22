@@ -38,7 +38,8 @@ public class Welcome_Activity extends AppCompatActivity {
                 loggedUser = new Customer(firstName,lastName,dateOfBirth,homeAddress,emailAddress,age,username,password,id,role);
             }else{
                 int employeeID = extras.getInt("employeeId");
-                loggedUser = new Employee(firstName,lastName,dateOfBirth,homeAddress,emailAddress,age,username,password,id,role,employeeID);
+                int branchNumber = extras.getInt("branchNumber");
+                loggedUser = new Employee(firstName,lastName,dateOfBirth,homeAddress,emailAddress,age,username,password,id,role,employeeID, branchNumber);
             }
         }
         Toast.makeText(Welcome_Activity.this,"Welcome " + loggedUser.username + "! " + "You are logged in as a \"" + loggedUser.role +"\"", Toast.LENGTH_SHORT).show();

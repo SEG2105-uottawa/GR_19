@@ -13,12 +13,6 @@ import com.google.firebase.database.*;
 public class Signup_Activity extends AppCompatActivity {
 
     DatabaseReference databaseAccounts;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
-        databaseAccounts = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("accounts");
-    }
     String firstName;
     String lastName;
     String email;
@@ -28,7 +22,37 @@ public class Signup_Activity extends AppCompatActivity {
     String username;
     String password;
     int employeeNum;
+    int branchNumber;
     String id;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_signup);
+        databaseAccounts = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("accounts");
+
+        RadioButton employeeRadioButton = (RadioButton) findViewById(R.id.employeeRadioButton);
+        EditText employeeNumberET = (EditText) findViewById(R.id.editTextEmployeeNum);
+        EditText branchNumberET = (EditText) findViewById(R.id.editTextBranchNumber);
+        employeeNumberET.setVisibility(View.GONE);
+        branchNumberET.setVisibility(View.GONE);
+
+        RadioGroup groupRadio=(RadioGroup)findViewById(R.id.customerOrEmployee);
+
+        //Show Employee Number and Branch Number only when employee radio button is checked
+        groupRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.employeeRadioButton){
+                    employeeNumberET.setVisibility(View.VISIBLE);
+                    branchNumberET.setVisibility(View.VISIBLE);
+                }else{
+                    employeeNumberET.setVisibility(View.GONE);
+                    branchNumberET.setVisibility(View.GONE);
+                }
+            }
+        });
+
+    }
 
     public void onClick(View view){
         firstName = ((EditText)findViewById(R.id.editTextFirstName)).getText().toString().trim();
@@ -40,7 +64,7 @@ public class Signup_Activity extends AppCompatActivity {
         password = ((EditText)findViewById(R.id.editTextPassword)).getText().toString().trim();
 
         RadioButton customerBtn = (RadioButton) findViewById(R.id.customer);
-        RadioButton employeeBtn = (RadioButton) findViewById(R.id.employee);
+        RadioButton employeeBtn = (RadioButton) findViewById(R.id.employeeRadioButton);
 
         //Make sure all parameters are filled and correct
         if (firstName.equals("")|| lastName.equals("") || email.equals("") || homeAddress.equals("")  || dateOfBirth.equals("") || username.equals("")  || password.equals("")  || ((EditText)findViewById(R.id.editTextAge)).getText().toString().equals("")){
@@ -49,7 +73,7 @@ public class Signup_Activity extends AppCompatActivity {
             age = Integer.parseInt(((EditText)findViewById(R.id.editTextAge)).getText().toString());
             id = databaseAccounts.push().getKey();
 
-            //Make sure username, password and employee number is unique
+            //Only allows for unique username, password and employee number
             databaseAccounts.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -85,7 +109,11 @@ public class Signup_Activity extends AppCompatActivity {
                             String eNString = eN.getText().toString();
                             employeeNum = Integer.parseInt(eNString);
 
-                            Employee employee = new Employee(firstName,lastName,dateOfBirth,homeAddress,email,age,username,password,id,"employee" ,employeeNum);
+                            EditText bN = (EditText)findViewById(R.id.editTextBranchNumber);
+                            String bNString = eN.getText().toString();
+                            branchNumber = Integer.parseInt(bNString);
+
+                            Employee employee = new Employee(firstName,lastName,dateOfBirth,homeAddress,email,age,username,password,id,"employee" ,employeeNum, branchNumber);
 
                             databaseAccounts.child(id).setValue(employee);
                             startActivity(new Intent(Signup_Activity.this,Login_Activity.class));

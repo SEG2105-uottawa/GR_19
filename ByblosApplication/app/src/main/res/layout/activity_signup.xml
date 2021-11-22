@@ -98,7 +98,7 @@
                 android:text="Customer" />
 
             <RadioButton
-                android:id="@+id/employee"
+                android:id="@+id/employeeRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@android:drawable/alert_light_frame"
@@ -111,8 +111,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Employee Number (If applicable)"
+            android:hint="Employee Number"
             android:inputType="number" />
+
+        <EditText
+            android:id="@+id/editTextBranchNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Branch Number"
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/button"

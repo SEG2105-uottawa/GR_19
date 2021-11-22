@@ -14,17 +14,76 @@
 
         <EditText
             android:id="@+id/serviceName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Enter Service Name"
             android:inputType="textPersonName" />
 
+        <EditText
+            android:id="@+id/editTextPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Price of Service"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/editTextRequiredAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Required Age"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required License Type" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupLicenseType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButtonG1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="G1" />
+
+            <RadioButton
+                android:id="@+id/radioButtonG2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="G2" />
+
+            <RadioButton
+                android:id="@+id/radioButtonG3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="G3" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/editTextServiceDescription"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:ems="10"
+            android:hint="Description of Service"
+            android:inputType="textPersonName" />
+
         <Button
-            android:id="@+id/deleteServiceBtn"
+            android:id="@+id/addServiceBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="AddService"
             android:text="Add Service" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
