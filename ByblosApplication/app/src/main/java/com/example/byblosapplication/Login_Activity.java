@@ -57,7 +57,7 @@ public class Login_Activity extends AppCompatActivity {
                             user.putExtra("role",userSnapshot.child("role").getValue(String.class));
                             if (userSnapshot.child("role").getValue(String.class).equals("employee")){
                                 user.putExtra("employeeID",userSnapshot.child("employeeID").getValue(Integer.class));
-                                user.putExtra("branchNumber",userSnapshot.child("branchNumber").getValue(Integer.class));
+                                user.putExtra("branchAddress",userSnapshot.child("branchAddress").getValue(String.class));
                             }
                             startActivity(user);
 

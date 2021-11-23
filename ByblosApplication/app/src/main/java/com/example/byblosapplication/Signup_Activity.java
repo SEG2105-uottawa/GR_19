@@ -22,7 +22,7 @@ public class Signup_Activity extends AppCompatActivity {
     String username;
     String password;
     int employeeNum;
-    int branchNumber;
+    String branchAddress;
     String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class Signup_Activity extends AppCompatActivity {
 
         RadioButton employeeRadioButton = (RadioButton) findViewById(R.id.employeeRadioButton);
         EditText employeeNumberET = (EditText) findViewById(R.id.editTextEmployeeNum);
-        EditText branchNumberET = (EditText) findViewById(R.id.editTextBranchNumber);
+        EditText branchNumberET = (EditText) findViewById(R.id.editTextBA);
         employeeNumberET.setVisibility(View.GONE);
         branchNumberET.setVisibility(View.GONE);
 
@@ -109,14 +109,33 @@ public class Signup_Activity extends AppCompatActivity {
                             String eNString = eN.getText().toString();
                             employeeNum = Integer.parseInt(eNString);
 
-                            EditText bN = (EditText)findViewById(R.id.editTextBranchNumber);
-                            String bNString = eN.getText().toString();
-                            branchNumber = Integer.parseInt(bNString);
+                            branchAddress = ((EditText)findViewById(R.id.editTextBA)).getText().toString();
 
-                            Employee employee = new Employee(firstName,lastName,dateOfBirth,homeAddress,email,age,username,password,id,"employee" ,employeeNum, branchNumber);
+                            //Check if branch exist
+                            DatabaseReference databaseBranches = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("branches");
+                            databaseBranches.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    Boolean bool = false;
+                                    for (DataSnapshot userSnapshot: snapshot.getChildren()){
+                                        if (userSnapshot.child("address").getValue(String.class).equals(branchAddress))
+                                            bool = true;
+                                    }
+                                    if (bool){
+                                        Employee employee = new Employee(firstName,lastName,dateOfBirth,homeAddress,email,age,username,password,id,"employee" ,employeeNum, branchAddress);
 
-                            databaseAccounts.child(id).setValue(employee);
-                            startActivity(new Intent(Signup_Activity.this,Login_Activity.class));
+                                        databaseAccounts.child(id).setValue(employee);
+                                        startActivity(new Intent(Signup_Activity.this,Login_Activity.class));
+                                    }else{
+                                        Toast.makeText(Signup_Activity.this,"Branch does not exist", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                         }
                     }
                 }

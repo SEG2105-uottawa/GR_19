@@ -3,7 +3,6 @@ package com.example.byblosapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.*;
 
@@ -11,11 +10,11 @@ import com.google.firebase.database.*;
 
 public class AddService_Activity extends AppCompatActivity {
     DatabaseReference databaseServices;
-    String serviceName;
-    String requiredLicense;
-    String serviceDescription;
-    int servicePrice;
-    int requiredAge;
+    public String serviceName;
+    public String requiredLicense;
+    public String serviceDescription;
+    public int servicePrice;
+    public int requiredAge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +33,8 @@ public class AddService_Activity extends AppCompatActivity {
                     requiredLicense = "G1";
                 else if (checkedId == R.id.radioButtonG2)
                     requiredLicense = "G2";
-                else if (checkedId == R.id.radioButtonG3)
-                    requiredLicense = "G3";
+                else if (checkedId == R.id.radioButtonG)
+                    requiredLicense = "G";
             }
         });
 

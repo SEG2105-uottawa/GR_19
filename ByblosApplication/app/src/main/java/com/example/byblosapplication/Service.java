@@ -7,7 +7,7 @@ public class Service {
     public int requiredAge;
     public String requiredLicense;
     public String serviceDescription;
-    public Service(String name,String serviceID, int servicePrice, int requiredAge, String requiredLicense, String serviceDescription){
+    public Service(String name,String id, int servicePrice, int requiredAge, String requiredLicense, String serviceDescription){
         this.id = id;
         this.name = name;
         this.servicePrice = servicePrice;

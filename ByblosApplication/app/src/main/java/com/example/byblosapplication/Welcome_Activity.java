@@ -13,6 +13,7 @@ import com.google.firebase.database.*;
 public class Welcome_Activity extends AppCompatActivity {
     DatabaseReference databaseAccounts;
     Person loggedUser;
+    String branchAddress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,18 +39,55 @@ public class Welcome_Activity extends AppCompatActivity {
                 loggedUser = new Customer(firstName,lastName,dateOfBirth,homeAddress,emailAddress,age,username,password,id,role);
             }else{
                 int employeeID = extras.getInt("employeeId");
-                int branchNumber = extras.getInt("branchNumber");
-                loggedUser = new Employee(firstName,lastName,dateOfBirth,homeAddress,emailAddress,age,username,password,id,role,employeeID, branchNumber);
+                branchAddress = extras.getString("branchAddress");
+                loggedUser = new Employee(firstName,lastName,dateOfBirth,homeAddress,emailAddress,age,username,password,id,role,employeeID, branchAddress);
             }
         }
         Toast.makeText(Welcome_Activity.this,"Welcome " + loggedUser.username + "! " + "You are logged in as a \"" + loggedUser.role +"\"", Toast.LENGTH_SHORT).show();
+
+        if (loggedUser.role.equals("admin")){
+            LinearLayout adminLayout = (LinearLayout) findViewById(R.id.adminLayout);
+            adminLayout.setVisibility(View.VISIBLE);
+        }
+
+        if (loggedUser.role.equals("employee")){
+            LinearLayout employeeLayout = (LinearLayout) findViewById(R.id.employeeLayout);
+            employeeLayout.setVisibility(View.VISIBLE);
+        }
     }
 
-    public void AdminButton(View view){
-        if (loggedUser.role.equals("admin")){
-            startActivity(new Intent(Welcome_Activity.this, AdminPage_Activity.class));
-        }else{
-            Toast.makeText(Welcome_Activity.this,"You are not an admin", Toast.LENGTH_SHORT).show();
-        }
+    public void AddService(View view){
+        startActivity(new Intent(Welcome_Activity.this,AddService_Activity.class));
+    }
+    public void EditService(View view){
+        startActivity(new Intent(Welcome_Activity.this,EditService_Activity.class));
+    }
+    public void DeleteService(View view){
+        startActivity(new Intent(Welcome_Activity.this,DeleteService_Activity.class));
+    }
+    public void DeleteAccount(View view){
+        startActivity(new Intent(Welcome_Activity.this,DeleteBranchAccount_Activity.class));
+    }
+
+    public void CreateBranch(View view){
+        startActivity(new Intent(Welcome_Activity.this,CreateBranch_Activity.class));
+    }
+
+    public void AddServiceToBranch(View view){
+        Intent address = new Intent(Welcome_Activity.this, AddBranchService_Activity.class);
+        address.putExtra("address", branchAddress);
+        startActivity(address);
+    }
+
+    public void EditBranch(View view){
+        Intent address = new Intent(Welcome_Activity.this, EditBranch_Activity.class);
+        address.putExtra("address", branchAddress);
+        startActivity(address);
+    }
+
+    public void DeleteBranchService(View view){
+        Intent address = new Intent(Welcome_Activity.this, DeleteBranchService_Activity.class);
+        address.putExtra("address", branchAddress);
+        startActivity(address);
     }
 }

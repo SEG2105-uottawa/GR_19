@@ -7,16 +7,88 @@
     tools:context=".Welcome_Activity">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp">
 
-        <Button
-            android:id="@+id/adminBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="AdminButton"
-            android:text="Admin" />
+        <LinearLayout
+            android:id="@+id/adminLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="gone">
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="AddService"
+                android:text="Add Service" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="EditService"
+                android:text="Edit Service" />
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="EditService"
+                android:text="Delete Service" />
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="DeleteAccount"
+                android:text="Delete Branch Account" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/employeeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="CreateBranch"
+                android:text="Create Branch Profile" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="AddServiceToBranch"
+                android:text="Add Branch Service" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="EditBranch"
+                android:text="Edit Branch" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="DeleteBranchService"
+                android:text="Delete Branch Service" />
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
