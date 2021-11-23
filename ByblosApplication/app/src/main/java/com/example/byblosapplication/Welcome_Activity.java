@@ -90,4 +90,10 @@ public class Welcome_Activity extends AppCompatActivity {
         address.putExtra("address", branchAddress);
         startActivity(address);
     }
+
+    public void ServiceRequest(View view){
+        Intent address = new Intent(Welcome_Activity.this, ServiceRequest_Activity.class);
+        address.putExtra("address", branchAddress);
+        startActivity(address);
+    }
 }
