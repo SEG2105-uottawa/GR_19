@@ -14,6 +14,7 @@ public class Welcome_Activity extends AppCompatActivity {
     DatabaseReference databaseAccounts;
     Person loggedUser;
     String branchAddress;
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +34,14 @@ public class Welcome_Activity extends AppCompatActivity {
             int age = extras.getInt("age");
             String username = extras.getString("username");
             String password = extras.getString("password");
-            String id = extras.getString("id");
+            id = extras.getString("id");
             String role = extras.getString("role");
             if (role.equals("customer")){
                 loggedUser = new Customer(firstName,lastName,dateOfBirth,homeAddress,emailAddress,age,username,password,id,role);
             }else{
-                int employeeID = extras.getInt("employeeId");
+                int employeeId = extras.getInt("employeeId");
                 branchAddress = extras.getString("branchAddress");
-                loggedUser = new Employee(firstName,lastName,dateOfBirth,homeAddress,emailAddress,age,username,password,id,role,employeeID, branchAddress);
+                loggedUser = new Employee(firstName,lastName,dateOfBirth,homeAddress,emailAddress,age,username,password,id,role,employeeId);
             }
         }
         Toast.makeText(Welcome_Activity.this,"Welcome " + loggedUser.username + "! " + "You are logged in as a \"" + loggedUser.role +"\"", Toast.LENGTH_SHORT).show();
@@ -70,25 +71,40 @@ public class Welcome_Activity extends AppCompatActivity {
     }
 
     public void CreateBranch(View view){
-        startActivity(new Intent(Welcome_Activity.this,CreateBranch_Activity.class));
+        Intent information = new Intent (new Intent(Welcome_Activity.this,CreateBranch_Activity.class));
+        information.putExtra("loggedUserId", id);
+        startActivity(information);
     }
 
     public void AddServiceToBranch(View view){
-        Intent address = new Intent(Welcome_Activity.this, AddBranchService_Activity.class);
-        address.putExtra("address", branchAddress);
-        startActivity(address);
+        if (!(branchAddress == null)){
+            Intent address = new Intent(Welcome_Activity.this, AddBranchService_Activity.class);
+            address.putExtra("address", branchAddress);
+            startActivity(address);
+        }else{
+            Toast.makeText(Welcome_Activity.this,"No branch is associated with this account. Please add branch first", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void EditBranch(View view){
-        Intent address = new Intent(Welcome_Activity.this, EditBranch_Activity.class);
-        address.putExtra("address", branchAddress);
-        startActivity(address);
+        if (!(branchAddress == null)){
+            Intent address = new Intent(Welcome_Activity.this, EditBranch_Activity.class);
+            address.putExtra("address", branchAddress);
+            startActivity(address);
+        }else{
+            Toast.makeText(Welcome_Activity.this,"No branch is associated with this branch. Please add branch first", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     public void DeleteBranchService(View view){
-        Intent address = new Intent(Welcome_Activity.this, DeleteBranchService_Activity.class);
-        address.putExtra("address", branchAddress);
-        startActivity(address);
+        if (!(branchAddress == null)){
+            Intent address = new Intent(Welcome_Activity.this, DeleteBranchService_Activity.class);
+            address.putExtra("address", branchAddress);
+            startActivity(address);
+        }else{
+            Toast.makeText(Welcome_Activity.this,"No branch is associated with this branch. Please add branch first", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void ServiceRequest(View view){

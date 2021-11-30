@@ -1,7 +1,9 @@
 package com.example.byblosapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -71,13 +73,20 @@ public class CreateBranch_Activity extends AppCompatActivity {
             workingHours.add(1,endTime);
             Branch branch = new Branch(branchAddress,workingHours, phoneNumber,id);
             databaseBranches.child(id).setValue(branch);
+
+            //Update loggedUser's branch address
+            Bundle extras = getIntent().getExtras();
+            String userId = extras.getString("loggedUserId");
+            DatabaseReference databaseAccount = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("accounts/" + userId);
+            databaseAccount.child("branchAddress").setValue(branchAddress);
+
             Toast.makeText(CreateBranch_Activity.this,"Created Branch", Toast.LENGTH_SHORT).show();
         }
     }
 
     public static Boolean isNumeric(String string){
         try {
-            int integer = Integer.parseInt(string);
+            long number = Long.parseLong(string);
         } catch (NumberFormatException nfe) {
             return false;
         }

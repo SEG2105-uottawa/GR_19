@@ -10,7 +10,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp">
 
         <EditText
             android:id="@+id/editTextFirstName"
@@ -113,14 +115,6 @@
             android:ems="10"
             android:hint="Employee Number"
             android:inputType="number" />
-
-        <EditText
-            android:id="@+id/editTextBA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Address of Branch"
-            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/button"
