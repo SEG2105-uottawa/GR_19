@@ -58,7 +58,6 @@
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textPersonName"
-                android:text="Email"
                 android:visibility="gone" />
 
             <TextView
@@ -252,6 +251,7 @@
                 android:id="@+id/button21"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="submitRequest"
                 android:text="Submit Request" />
 
         </LinearLayout>

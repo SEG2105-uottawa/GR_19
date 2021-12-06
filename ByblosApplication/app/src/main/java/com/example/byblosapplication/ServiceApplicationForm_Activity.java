@@ -42,17 +42,17 @@ public class ServiceApplicationForm_Activity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String serviceName = extras.getString("serviceName");
 
-        EditText firstNameEditText = (EditText) findViewById(R.id.firstNameEditText);
-        EditText lastNameEditText = (EditText) findViewById(R.id.lastNameEditText);
-        EditText ageEditText = (EditText) findViewById(R.id.ageEditText);
-        EditText homeAddressEditText = (EditText) findViewById(R.id.homeAddressEditText);
-        EditText emailEditText = (EditText) findViewById(R.id.emailEditText);
-        EditText preferredCarTypeEditText = (EditText) findViewById(R.id.preferredCarTypeEditText);
-        EditText areaOfUseEditText = (EditText) findViewById(R.id.areaOfUseEditText);
-        EditText startLocationEditText = (EditText) findViewById(R.id.startLocationEditText);
-        EditText destinationEditText = (EditText) findViewById(R.id.destinationEditText);
-        EditText numberOfMoversEditText = (EditText) findViewById(R.id.numberOfMoversEditText);
-        EditText numberOfItemsEditText = (EditText) findViewById(R.id.numberOfItemsEditText);
+        firstNameEditText = (EditText) findViewById(R.id.firstNameEditText);
+        lastNameEditText = (EditText) findViewById(R.id.lastNameEditText);
+        ageEditText = (EditText) findViewById(R.id.ageEditText);
+        homeAddressEditText = (EditText) findViewById(R.id.homeAddressEditText);
+        emailEditText = (EditText) findViewById(R.id.emailEditText);
+        preferredCarTypeEditText = (EditText) findViewById(R.id.preferredCarTypeEditText);
+        areaOfUseEditText = (EditText) findViewById(R.id.areaOfUseEditText);
+        startLocationEditText = (EditText) findViewById(R.id.startLocationEditText);
+        destinationEditText = (EditText) findViewById(R.id.destinationEditText);
+        numberOfMoversEditText = (EditText) findViewById(R.id.numberOfMoversEditText);
+        numberOfItemsEditText = (EditText) findViewById(R.id.numberOfItemsEditText);
 
         pickupDate = (TableLayout)findViewById(R.id.pickupLayout);
         returnDate = (TableLayout)findViewById(R.id.returnLayout);
@@ -167,39 +167,43 @@ public class ServiceApplicationForm_Activity extends AppCompatActivity {
         ArrayList<String> customerFields = new ArrayList<String>();
         if (firstNameEditText.isShown())
             customerFields.add(firstNameEditText.getText().toString());
-        if (lastNameEditText.isShown())
+        if (lastNameEditText.getVisibility() == View.VISIBLE)
             customerFields.add(lastNameEditText.getText().toString());
-        if (ageEditText.isShown())
+        if (ageEditText.getVisibility() == View.VISIBLE)
             customerFields.add(ageEditText.getText().toString());
-        if (homeAddressEditText.isShown())
+        if (homeAddressEditText.getVisibility() == View.VISIBLE)
             customerFields.add(homeAddressEditText.getText().toString());
-        if (emailEditText.isShown())
+        if (emailEditText.getVisibility() == View.VISIBLE)
             customerFields.add(emailEditText.getText().toString());
-        if (license.isShown())
+        if (license.getVisibility() == View.VISIBLE)
             customerFields.add(license.getSelectedItem().toString());
-        if (preferredCarTypeEditText.isShown())
+        if (preferredCarTypeEditText.getVisibility() == View.VISIBLE)
             customerFields.add(preferredCarTypeEditText.getText().toString());
-        if (pickupDate.isShown()) {
+        if (pickupDate.getVisibility() == View.VISIBLE) {
             String pickupDateS = (yearPickupSpinner.getSelectedItem().toString() + "/" + monthPickupSpinner.getSelectedItem().toString() + "/" + dayPickupSpinner.getSelectedItem().toString());
             customerFields.add(pickupDateS);
         }
-        if (returnDate.isShown()){
+        if (returnDate.getVisibility() == View.VISIBLE){
             String returnDateS = (yearReturnSpinner.getSelectedItem().toString() + "/" + monthReturnSpinner.getSelectedItem().toString() + "/" + dayReturnSpinner.getSelectedItem().toString());
             customerFields.add(returnDateS);
         }
-        if (areaOfUseEditText.isShown())
+        if (areaOfUseEditText.getVisibility() == View.VISIBLE)
             customerFields.add(areaOfUseEditText.getText().toString());
-        if (startLocationEditText.isShown())
+        if (startLocationEditText.getVisibility() == View.VISIBLE)
             customerFields.add(startLocationEditText.getText().toString());
-        if (destinationEditText.isShown())
+        if (destinationEditText.getVisibility() == View.VISIBLE)
             customerFields.add(destinationEditText.getText().toString());
-        if (numberOfMoversEditText.isShown())
+        if (numberOfMoversEditText.getVisibility() == View.VISIBLE)
             customerFields.add(numberOfMoversEditText.getText().toString());
-        if (numberOfItemsEditText.isShown())
+        if (numberOfItemsEditText.getVisibility() == View.VISIBLE)
             customerFields.add(numberOfItemsEditText.getText().toString());
 
         DatabaseReference serviceRequest = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("requests");
         String id = serviceRequest.push().getKey();
-        serviceRequest.child(id).setValue(customerFields);
+        Bundle extras = getIntent().getExtras();
+        String serviceName = extras.getString("serviceName");
+        serviceRequest.child(id).child("requestType").setValue(serviceName);
+        serviceRequest.child(id).child("listOfRequirements").setValue(customerFields);
+        Toast.makeText(ServiceApplicationForm_Activity.this,"Submitted Service Request", Toast.LENGTH_SHORT).show();
     }
 }
