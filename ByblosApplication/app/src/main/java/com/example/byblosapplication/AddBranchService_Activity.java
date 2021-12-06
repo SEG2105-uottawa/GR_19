@@ -57,27 +57,23 @@ public class AddBranchService_Activity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Service service;
                 String serviceName = ((Spinner)findViewById(R.id.serviceSpinner)).getSelectedItem().toString();
-                int requiredAge = 0;
                 id = "";
-                String requiredLicense = "";
-                String serviceDescription = "";
                 int servicePrice = 0;
                 String name = "";
+                ArrayList<String> listOfRequirements = new ArrayList<String>();
 
                 //Get service
                 for (DataSnapshot userSnapshot: snapshot.getChildren()){
                     String snapShotName = userSnapshot.child("name").getValue(String.class);
                     if (snapShotName.equals(serviceName)){
                         name =  userSnapshot.child("name").getValue(String.class);
-                        requiredAge = userSnapshot.child("requiredAge").getValue(int.class);
                         id = userSnapshot.child("id").getValue(String.class);
-                        requiredLicense = userSnapshot.child("requiredLicense").getValue(String.class);
-                        serviceDescription = userSnapshot.child("serviceDescription").getValue(String.class);
                         servicePrice = userSnapshot.child("servicePrice").getValue(int.class);
+
                     }
                 }
 
-                service = new Service(name,id,servicePrice,requiredAge,requiredLicense,serviceDescription);
+                service = new Service(name,id,servicePrice,listOfRequirements);
 
                 DatabaseReference databaseBranches= FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("branches");
                 databaseBranches.addListenerForSingleValueEvent(new ValueEventListener() {

@@ -49,23 +49,63 @@
             android:inputType="textPersonName"
             android:minHeight="48dp" />
 
-        <EditText
-            android:id="@+id/editTextAge"
+        <TextView
+            android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Age"
-            android:inputType="number"
-            android:minHeight="48dp" />
+            android:gravity="center_horizontal"
+            android:text="Date Of Birth" />
 
-        <EditText
-            android:id="@+id/editTextDOB"
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Date Of Birth (yyyy/mm/dd)"
-            android:inputType="date"
-            android:minHeight="48dp" />
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Year" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Month" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Day" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal">
+
+                <Spinner
+                    android:id="@+id/yearSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Spinner
+                    android:id="@+id/monthSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Spinner
+                    android:id="@+id/daySpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+        </TableLayout>
 
         <EditText
             android:id="@+id/editTextUsername"
@@ -107,14 +147,6 @@
                 android:text="Employee" />
 
         </RadioGroup>
-
-        <EditText
-            android:id="@+id/editTextEmployeeNum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Employee Number"
-            android:inputType="number" />
 
         <Button
             android:id="@+id/button"

@@ -1,18 +1,20 @@
 package com.example.byblosapplication;
 
+import java.util.ArrayList;
+
 public class Service {
     public String name;
     public String id;
     public int servicePrice;
-    public int requiredAge;
-    public String requiredLicense;
-    public String serviceDescription;
-    public Service(String name,String id, int servicePrice, int requiredAge, String requiredLicense, String serviceDescription){
+    public ArrayList<String> listOfRequirements;
+    public Service(String name, String id, int servicePrice,ArrayList<String>listOfRequirements){
         this.id = id;
         this.name = name;
         this.servicePrice = servicePrice;
-        this.requiredAge = requiredAge;
-        this.requiredLicense = requiredLicense;
-        this.serviceDescription = serviceDescription;
+        this.listOfRequirements = listOfRequirements;
+    }
+
+    public void addRequirement(String requirement){
+        listOfRequirements.add(requirement);
     }
 }

@@ -25,6 +25,10 @@ public class Welcome_Activity extends AppCompatActivity {
         //Set the loggedUser
         if (extras.getString("id").equals("admin")){
             loggedUser = new Admin("admin","admin","admin","admin");
+            TextView nameTV = (TextView) findViewById(R.id.nameEditText);
+            TextView roleTV = (TextView) findViewById(R.id.roleEditText);
+            roleTV.setText("Logged in as administrator");
+            nameTV.setVisibility(View.GONE);
         }else{
             String firstName = extras.getString("firstName");
             String lastName = extras.getString("lastName");
@@ -38,11 +42,17 @@ public class Welcome_Activity extends AppCompatActivity {
             String role = extras.getString("role");
             if (role.equals("customer")){
                 loggedUser = new Customer(firstName,lastName,dateOfBirth,homeAddress,emailAddress,age,username,password,id,role);
+                TextView roleTV = (TextView) findViewById(R.id.roleEditText);
+                roleTV.setText("Logged in as customer");
             }else{
                 int employeeId = extras.getInt("employeeId");
                 branchAddress = extras.getString("branchAddress");
                 loggedUser = new Employee(firstName,lastName,dateOfBirth,homeAddress,emailAddress,age,username,password,id,role,employeeId);
+                TextView roleTV = (TextView) findViewById(R.id.roleEditText);
+                roleTV.setText("Logged in as employee");
             }
+            TextView nameTV = (TextView) findViewById(R.id.nameEditText);
+            nameTV.setText(firstName + " " + lastName);
         }
         Toast.makeText(Welcome_Activity.this,"Welcome " + loggedUser.username + "! " + "You are logged in as a \"" + loggedUser.role +"\"", Toast.LENGTH_SHORT).show();
 
@@ -55,6 +65,7 @@ public class Welcome_Activity extends AppCompatActivity {
             LinearLayout employeeLayout = (LinearLayout) findViewById(R.id.employeeLayout);
             employeeLayout.setVisibility(View.VISIBLE);
         }
+
     }
 
     public void AddService(View view){

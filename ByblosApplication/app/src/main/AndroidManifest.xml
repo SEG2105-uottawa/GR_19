@@ -25,9 +25,6 @@
             android:name=".CreateBranch_Activity"
             android:exported="true" />
         <activity
-            android:name=".EditService_Activity2"
-            android:exported="true" />
-        <activity
             android:name=".DeleteService_Activity"
             android:exported="true" />
         <activity
@@ -44,6 +41,9 @@
             android:exported="true" />
         <activity
             android:name=".Signup_Activity"
+            android:exported="true" />
+        <activity
+            android:name=".DeleteBranchAccount_Activity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

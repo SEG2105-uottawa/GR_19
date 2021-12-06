@@ -6,84 +6,136 @@
     android:layout_height="match_parent"
     tools:context=".AddService_Activity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/serviceName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter Service Name"
-            android:inputType="textPersonName" />
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Price of Service"
-            android:inputType="numberDecimal" />
+            <EditText
+                android:id="@+id/serviceName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter Service Name"
+                android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/editTextRequiredAge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Required Age"
-            android:inputType="number" />
+            <EditText
+                android:id="@+id/editTextPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Price of Service (Hourly)"
+                android:inputType="numberDecimal" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Required License Type" />
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Check all requirements of the service" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupLicenseType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            <CheckBox
+                android:id="@+id/firstNameCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="First Name" />
 
-            <RadioButton
-                android:id="@+id/radioButtonG1"
+            <CheckBox
+                android:id="@+id/lastNameCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Last Name" />
+
+            <CheckBox
+                android:id="@+id/ageCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Age" />
+
+            <CheckBox
+                android:id="@+id/homeAddressCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Home Address" />
+
+            <CheckBox
+                android:id="@+id/emailCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email" />
+
+            <CheckBox
+                android:id="@+id/licenseCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="License" />
+
+            <CheckBox
+                android:id="@+id/pCTCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Preferred Car Type" />
+
+            <CheckBox
+                android:id="@+id/pickupDateCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pickup Date" />
+
+            <CheckBox
+                android:id="@+id/returnDateCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Return Date" />
+
+            <CheckBox
+                android:id="@+id/maxKmsCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Maximum Number of Kilometers" />
+
+            <CheckBox
+                android:id="@+id/areaOfUseCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Area of Use" />
+
+            <CheckBox
+                android:id="@+id/startLocationCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Start Location" />
+
+            <CheckBox
+                android:id="@+id/destinationCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Destination" />
+
+            <CheckBox
+                android:id="@+id/nOMCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Number of Movers" />
+
+            <CheckBox
+                android:id="@+id/numberOfItemsCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Number of Items" />
+
+            <Button
+                android:id="@+id/addServiceBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="G1" />
-
-            <RadioButton
-                android:id="@+id/radioButtonG2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="G2" />
-
-            <RadioButton
-                android:id="@+id/radioButtonG"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="G" />
-        </RadioGroup>
-
-        <EditText
-            android:id="@+id/editTextServiceDescription"
-            android:layout_width="match_parent"
-            android:layout_height="145dp"
-            android:ems="10"
-            android:hint="Description of Service"
-            android:inputType="textPersonName" />
-
-        <Button
-            android:id="@+id/addServiceBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="AddService"
-            android:text="Add Service" />
-
-    </LinearLayout>
+                android:gravity="center"
+                android:onClick="AddService"
+                android:text="Add Service" />
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

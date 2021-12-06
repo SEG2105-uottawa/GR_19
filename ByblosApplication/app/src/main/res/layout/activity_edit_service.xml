@@ -12,21 +12,133 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/serviceNameBtn"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Enter the name of the service you would like to edit"
-            android:inputType="textPersonName" />
+            android:gravity="center|center_horizontal|center_vertical"
+            android:text="Choose a service to edit" />
 
-        <Button
-            android:id="@+id/findService"
+        <Spinner
+            android:id="@+id/editServiceSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="EditService"
-            android:text="Find Service" />
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/priceEditTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Price"
+                    android:inputType="number" />
+
+                <CheckBox
+                    android:id="@+id/firstNameEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="First Name" />
+
+                <CheckBox
+                    android:id="@+id/lastNameEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Last Name" />
+
+                <CheckBox
+                    android:id="@+id/ageEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Age" />
+
+                <CheckBox
+                    android:id="@+id/homeAddressEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Home Address" />
+
+                <CheckBox
+                    android:id="@+id/emailEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email" />
+
+                <CheckBox
+                    android:id="@+id/licenseEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="License" />
+
+                <CheckBox
+                    android:id="@+id/preferredCarTypeEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Preferred Car Type" />
+
+                <CheckBox
+                    android:id="@+id/pickupDateEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pickup Date" />
+
+                <CheckBox
+                    android:id="@+id/returnDateEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Return Date" />
+
+                <CheckBox
+                    android:id="@+id/maximumNumOfKmsEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Maximum Number of Kilometers" />
+
+                <CheckBox
+                    android:id="@+id/areaOfUseEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Area of Use" />
+
+                <CheckBox
+                    android:id="@+id/startLocationEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Start Location" />
+
+                <CheckBox
+                    android:id="@+id/destinationEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Destination" />
+
+                <CheckBox
+                    android:id="@+id/numOfMoversEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Number of Movers" />
+
+                <CheckBox
+                    android:id="@+id/numOfItemsEditCB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Number of Items" />
+
+                <Button
+                    android:id="@+id/findService"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="EditService"
+                    android:text="Find Service" />
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
