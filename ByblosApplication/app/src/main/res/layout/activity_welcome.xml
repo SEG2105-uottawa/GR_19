@@ -74,6 +74,7 @@
                         android:layout_width="0dp"
                         android:layout_height="75dp"
                         android:layout_weight="1"
+                        android:onClick="searchByService"
                         android:text="Search by Service Type" />
 
                 </TableRow>

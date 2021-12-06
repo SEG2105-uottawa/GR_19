@@ -59,6 +59,34 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/applyServiceLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Select a service" />
+
+        <Spinner
+            android:id="@+id/applyServiceSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/button20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="applyService"
+            android:text="Apply for Service" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/branchNotFoundLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

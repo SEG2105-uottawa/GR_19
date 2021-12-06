@@ -31,7 +31,7 @@ public class Welcome_Activity extends AppCompatActivity {
             loggedUser = new Admin("admin","admin","admin","admin");
             TextView nameTV = (TextView) findViewById(R.id.nameEditText);
             TextView roleTV = (TextView) findViewById(R.id.roleEditText);
-            roleTV.setText("Logged in as administrator");
+            roleTV.setText("Logged in as Administrator");
             nameTV.setVisibility(View.GONE);
         }else{
             String firstName = extras.getString("firstName");
@@ -47,13 +47,13 @@ public class Welcome_Activity extends AppCompatActivity {
             if (role.equals("customer")){
                 loggedUser = new Customer(firstName,lastName,dateOfBirth,homeAddress,emailAddress,age,username,password,id,role);
                 TextView roleTV = (TextView) findViewById(R.id.roleEditText);
-                roleTV.setText("Logged in as customer");
+                roleTV.setText("Logged in as Customer");
             }else{
                 int employeeId = extras.getInt("employeeId");
                 branchAddress = extras.getString("branchAddress");
                 loggedUser = new Employee(firstName,lastName,dateOfBirth,homeAddress,emailAddress,age,username,password,id,role,employeeId);
                 TextView roleTV = (TextView) findViewById(R.id.roleEditText);
-                roleTV.setText("Logged in as employee");
+                roleTV.setText("Logged in as Employee");
             }
             TextView nameTV = (TextView) findViewById(R.id.nameEditText);
             nameTV.setText(firstName + " " + lastName);
@@ -114,7 +114,9 @@ public class Welcome_Activity extends AppCompatActivity {
         databaseAccounts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                branchAddress = snapshot.child(id).child("branchAddress").getValue(String.class);
+                if (loggedUser.role.equals("employee")){
+                    branchAddress = snapshot.child(id).child("branchAddress").getValue(String.class);
+                }
             }
 
             @Override
@@ -183,6 +185,14 @@ public class Welcome_Activity extends AppCompatActivity {
     public void searchByAddress(View view){
         searchInput = ((TextView) findViewById(R.id.searchInputEditText)).getText().toString();
         Intent address = new Intent(Welcome_Activity.this, SearchAddress_Activity.class);
+        address.putExtra("loggedUser", extras);
+        address.putExtra("search", searchInput);
+        startActivity(address);
+    }
+
+    public void searchByService(View view){
+        searchInput = ((TextView) findViewById(R.id.searchInputEditText)).getText().toString();
+        Intent address = new Intent(Welcome_Activity.this, SearchService_Activity.class);
         address.putExtra("loggedUser", extras);
         address.putExtra("search", searchInput);
         startActivity(address);

@@ -80,8 +80,6 @@ public class AddBranchService_Activity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot userSnapshot: snapshot.getChildren()){
-                            System.out.println("BranchAddress = " + userSnapshot.child("address"));
-                            System.out.println("EmployeeBranchAddress = " + branchAddress);
 
                             if (userSnapshot.child("address").getValue().equals(branchAddress)){
                                 String branchID = userSnapshot.child("id").getValue(String.class);
