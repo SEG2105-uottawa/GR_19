@@ -10,18 +10,22 @@ import android.widget.*;
 
 import com.google.firebase.database.*;
 
+import java.util.ArrayList;
+
 public class Welcome_Activity extends AppCompatActivity {
     DatabaseReference databaseAccounts;
     Person loggedUser;
     String branchAddress;
     String id;
+    String searchInput;
+    Bundle extras;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         databaseAccounts = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("accounts");
 
-        Bundle extras = getIntent().getExtras();
+        extras = getIntent().getExtras();
         //Set the loggedUser
         if (extras.getString("id").equals("admin")){
             loggedUser = new Admin("admin","admin","admin","admin");
@@ -66,6 +70,58 @@ public class Welcome_Activity extends AppCompatActivity {
             employeeLayout.setVisibility(View.VISIBLE);
         }
 
+        if (loggedUser.role.equals("customer")){
+            LinearLayout employeeLayout = (LinearLayout) findViewById(R.id.customerLayout);
+            employeeLayout.setVisibility(View.VISIBLE);
+            Spinner startTime = ((Spinner) findViewById(R.id.startTimeSpinner));
+            Spinner endTime = ((Spinner) findViewById(R.id.endTimeSpinner));
+            ArrayList<String> hours = new ArrayList<String>();
+            hours.add("00:00");
+            hours.add("01:00");
+            hours.add("02:00");
+            hours.add("03:00");
+            hours.add("04:00");
+            hours.add("05:00");
+            hours.add("06:00");
+            hours.add("07:00");
+            hours.add("08:00");
+            hours.add("09:00");
+            hours.add("10:00");
+            hours.add("11:00");
+            hours.add("12:00");
+            hours.add("13:00");
+            hours.add("14:00");
+            hours.add("15:00");
+            hours.add("16:00");
+            hours.add("17:00");
+            hours.add("18:00");
+            hours.add("19:00");
+            hours.add("20:00");
+            hours.add("21:00");
+            hours.add("22:00");
+            hours.add("23:00");
+            ArrayAdapter<String> hourAdapter = new ArrayAdapter<String>(Welcome_Activity.this, android.R.layout.simple_spinner_item, hours);
+            hourAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+            startTime.setAdapter(hourAdapter);
+            endTime.setAdapter(hourAdapter);
+
+        }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        databaseAccounts.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                branchAddress = snapshot.child(id).child("branchAddress").getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void AddService(View view){
@@ -121,6 +177,14 @@ public class Welcome_Activity extends AppCompatActivity {
     public void ServiceRequest(View view){
         Intent address = new Intent(Welcome_Activity.this, ServiceRequest_Activity.class);
         address.putExtra("address", branchAddress);
+        startActivity(address);
+    }
+
+    public void searchByAddress(View view){
+        searchInput = ((TextView) findViewById(R.id.searchInputEditText)).getText().toString();
+        Intent address = new Intent(Welcome_Activity.this, SearchAddress_Activity.class);
+        address.putExtra("loggedUser", extras);
+        address.putExtra("search", searchInput);
         startActivity(address);
     }
 }

@@ -87,6 +87,8 @@ public class CreateBranch_Activity extends AppCompatActivity {
     public static Boolean isNumeric(String string){
         try {
             long number = Long.parseLong(string);
+            if (string.length() < 9 || string.length() > 12)
+                return false;
         } catch (NumberFormatException nfe) {
             return false;
         }

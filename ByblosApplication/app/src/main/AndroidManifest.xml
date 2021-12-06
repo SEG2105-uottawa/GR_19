@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ByblosApplication">
         <activity
+            android:name=".SearchService_Activity"
+            android:exported="true" />
+        <activity
+            android:name=".SearchAddress_Activity"
+            android:exported="true" />
+        <activity
             android:name=".ServiceRequest_Activity"
             android:exported="true" />
         <activity

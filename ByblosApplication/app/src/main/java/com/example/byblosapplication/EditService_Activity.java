@@ -30,6 +30,7 @@ public class EditService_Activity extends AppCompatActivity {
     public CheckBox numberOfMoversEditCB;
     public CheckBox numberOfItemsEditCB;
     public String serviceID;
+    public String serviceName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +103,7 @@ public class EditService_Activity extends AppCompatActivity {
                         for (DataSnapshot userSnapshot: snapshot.getChildren()){
                             if (userSnapshot.child("name").getValue(String.class).equals(serviceSpinner.getSelectedItem().toString())){
                                 serviceID = userSnapshot.child("id").getValue(String.class);
+                                serviceName = userSnapshot.child("name").getValue(String.class);
                                 EditText price = (EditText)findViewById(R.id.priceEditTV);
                                 if (userSnapshot.child("servicePrice").getValue(Integer.class) != null)
                                    price.setText(userSnapshot.child("servicePrice").getValue(Integer.class).toString());
@@ -213,9 +215,8 @@ public class EditService_Activity extends AppCompatActivity {
             listOfRequirements.add("Number of Items");
         DatabaseReference serviceRef = databaseServices.child(serviceID).child("name");
         int servicePrice = Integer.parseInt(((EditText)findViewById(R.id.priceEditTV)).getText().toString().trim());
-        Service service = new Service(serviceRef.toString(), serviceID, servicePrice,listOfRequirements);
-        System.out.println(serviceRef.toString());
-        //serviceRef.removeValue();
-      //  databaseServices.child(serviceID).setValue(service);
+        Service service = new Service(serviceName, serviceID, servicePrice,listOfRequirements);
+        serviceRef.removeValue();
+        databaseServices.child(serviceID).setValue(service);
     }
 }
