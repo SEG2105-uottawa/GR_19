@@ -197,4 +197,19 @@ public class Welcome_Activity extends AppCompatActivity {
         address.putExtra("search", searchInput);
         startActivity(address);
     }
+
+    public void searchByWorkingHours(View view){
+    String startTimeStr = ((Spinner) findViewById(R.id.startTimeSpinner)).getSelectedItem().toString();
+    String endTimeStr = ((Spinner) findViewById(R.id.endTimeSpinner)).getSelectedItem().toString();
+    int startTime = Integer.parseInt(startTimeStr.substring(0,2));
+    int endTime = Integer.parseInt(endTimeStr.substring(0,2));
+    Intent searchByHours = new Intent(Welcome_Activity.this, SearchHours_Activity.class);
+    searchByHours.putExtra("startTime", startTime);
+    searchByHours.putExtra("endTime",endTime);
+    if (startTime > endTime){
+        Toast.makeText(Welcome_Activity.this,"Invalid time input", Toast.LENGTH_LONG).show();
+    }else{
+        startActivity(searchByHours);
+    }
+    }
 }

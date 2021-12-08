@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchService_Activity">
+    tools:context=".SearchHours_Activity">
 
     <LinearLayout
         android:id="@+id/workingBranchesLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="visible"></LinearLayout>
+        android:orientation="vertical">
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,11 +21,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/serviceNotFoundTextView"
+            android:id="@+id/noBranchesFound"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Service not Found"
+            android:text="No Branches Found"
             android:visibility="gone" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,7 @@ public class SearchService_Activity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String serviceInput = extras.getString("search");
         databaseBranches = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("branches");
-        LinearLayout branchesLayout = (LinearLayout) findViewById(R.id.branchesLayout);
+        LinearLayout branchesLayout = (LinearLayout) findViewById(R.id.workingBranchesLayout);
         databaseBranches.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
