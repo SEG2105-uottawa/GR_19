@@ -74,4 +74,13 @@ public class SearchAddress_Activity extends AppCompatActivity {
         applyService.putExtra("serviceName", service);
         startActivity(applyService);
     }
+
+    public void review(View view){
+        TextView reviewTextView = (TextView) findViewById(R.id.reviewTextView);
+        if (reviewTextView.getText().toString().trim().equals(""))
+            Toast.makeText(SearchAddress_Activity.this,"Please write a review before submitting", Toast.LENGTH_SHORT).show();
+        else{
+            Toast.makeText(SearchAddress_Activity.this,"Thank you for the review", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

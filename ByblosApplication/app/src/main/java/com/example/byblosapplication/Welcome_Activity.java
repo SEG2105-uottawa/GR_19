@@ -206,6 +206,8 @@ public class Welcome_Activity extends AppCompatActivity {
     Intent searchByHours = new Intent(Welcome_Activity.this, SearchHours_Activity.class);
     searchByHours.putExtra("startTime", startTime);
     searchByHours.putExtra("endTime",endTime);
+    searchByHours.putExtra("startTimeStr", startTimeStr);
+    searchByHours.putExtra("endTimeStr",endTimeStr);
     if (startTime > endTime){
         Toast.makeText(Welcome_Activity.this,"Invalid time input", Toast.LENGTH_LONG).show();
     }else{

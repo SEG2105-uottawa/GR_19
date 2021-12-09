@@ -66,6 +66,28 @@
         android:orientation="vertical"
         android:visibility="gone">
 
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numStars="5" />
+
+        <EditText
+            android:id="@+id/reviewTextView"
+            android:layout_width="match_parent"
+            android:layout_height="136dp"
+            android:ems="10"
+            android:gravity="top|left"
+            android:hint="Write a Review"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/button22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="review"
+            android:text="Submit Review" />
+
         <TextView
             android:id="@+id/textView15"
             android:layout_width="match_parent"

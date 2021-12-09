@@ -7,12 +7,27 @@
     tools:context=".SearchService_Activity">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/serviceNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|top"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/workingBranchesLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="visible"></LinearLayout>
+        android:visibility="visible">
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

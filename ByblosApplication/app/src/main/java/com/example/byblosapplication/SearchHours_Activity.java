@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.*;
 import android.widget.*;
 
 import com.google.firebase.database.*;
@@ -19,8 +19,11 @@ public class SearchHours_Activity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         int startTime = extras.getInt("startTime");
         int endTime = extras.getInt("endTime");
+        String startTimeStr = extras.getString("startTimeStr");
+        String endTimeStr = extras.getString("endTimeStr");
         databaseBranches = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("branches");
         LinearLayout branchesLayout = (LinearLayout) findViewById(R.id.workingBranchesLayout);
+        ((TextView)findViewById(R.id.hoursTextView)).setText("Search results for +\"" +startTimeStr + "-" + endTimeStr+"\"");
 
         databaseBranches.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -30,13 +33,12 @@ public class SearchHours_Activity extends AppCompatActivity {
 
                     int start = Integer.parseInt((userSnapshot.child("workingHours").child("0").getValue(String.class)).substring(0,2));
                     int end = Integer.parseInt((userSnapshot.child("workingHours").child("1").getValue(String.class)).substring(0,2));
-                    System.out.println("startTime = " + startTime);
-                    System.out.println("start = " + start);
-                    System.out.println("endTime = " + endTime);
-                    System.out.println("end = " + end);
                     if (!(endTime < start || startTime > end)){
                         ok = true;
                         Button button = new Button(SearchHours_Activity.this);
+                        TextView branchTime = new TextView(SearchHours_Activity.this);
+                        branchTime.setText("Open from " + userSnapshot.child("workingHours").child("0").getValue(String.class) + " to " + userSnapshot.child("workingHours").child("1").getValue(String.class));
+                        branchTime.setGravity(Gravity.CENTER);
                         button.setText(userSnapshot.child("address").getValue(String.class));
                         button.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -48,6 +50,7 @@ public class SearchHours_Activity extends AppCompatActivity {
                                 startActivity(address);
                             }
                         });
+                        branchesLayout.addView(branchTime);
                         branchesLayout.addView(button);
                     }
                 }
