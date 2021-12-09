@@ -68,7 +68,8 @@
 
         <RatingBar
             android:id="@+id/ratingBar"
-            android:layout_width="match_parent"
+            style="@style/Widget.AppCompat.RatingBar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5" />
 

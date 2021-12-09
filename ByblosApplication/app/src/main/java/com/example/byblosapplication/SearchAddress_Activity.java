@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class SearchAddress_Activity extends AppCompatActivity {
     DatabaseReference databaseBranches;
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,7 @@ public class SearchAddress_Activity extends AppCompatActivity {
         databaseBranches.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String id = "";
+                id = "";
                 for (DataSnapshot userSnapshot: snapshot.getChildren()){
                     if (userSnapshot.child("address").getValue(String.class).equals(searchInput)){
                         id = userSnapshot.child("id").getValue(String.class);
@@ -77,9 +78,13 @@ public class SearchAddress_Activity extends AppCompatActivity {
 
     public void review(View view){
         TextView reviewTextView = (TextView) findViewById(R.id.reviewTextView);
+        int ratingBar = ((RatingBar) findViewById(R.id.ratingBar)).getNumStars();
+        String reviewId = databaseBranches.push().getKey();
         if (reviewTextView.getText().toString().trim().equals(""))
             Toast.makeText(SearchAddress_Activity.this,"Please write a review before submitting", Toast.LENGTH_SHORT).show();
         else{
+            databaseBranches.child(id).child("reviews").child(reviewId).child("reviewText").setValue(reviewTextView.getText().toString(),0);
+            databaseBranches.child(id).child("reviews").child(reviewId).child("reviewRating").setValue(ratingBar,1);
             Toast.makeText(SearchAddress_Activity.this,"Thank you for the review", Toast.LENGTH_SHORT).show();
         }
     }
