@@ -185,6 +185,8 @@ public class Welcome_Activity extends AppCompatActivity {
     public void searchByAddress(View view){
         searchInput = ((TextView) findViewById(R.id.searchInputEditText)).getText().toString();
         Intent address = new Intent(Welcome_Activity.this, SearchAddress_Activity.class);
+        String customerName = loggedUser.firstName + " " + loggedUser.lastName;
+        address.putExtra("customerName", customerName);
         address.putExtra("loggedUser", extras);
         address.putExtra("search", searchInput);
         startActivity(address);

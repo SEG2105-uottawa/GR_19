@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class SearchAddress_Activity extends AppCompatActivity {
     DatabaseReference databaseBranches;
     String id;
+    String customerName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +23,7 @@ public class SearchAddress_Activity extends AppCompatActivity {
         databaseBranches = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("branches");
         Bundle extras = getIntent().getExtras();
         String searchInput =extras.getString("search");
+        customerName = extras.getString("customerName");
         LinearLayout servicesLayout = (LinearLayout) findViewById(R.id.servicesLayout);
         LinearLayout applyLayout = (LinearLayout) findViewById(R.id.applyServiceLayout);
         TextView addressTV = (TextView) findViewById(R.id.branchAddressEditText);
@@ -73,6 +75,8 @@ public class SearchAddress_Activity extends AppCompatActivity {
         String service = ((Spinner)findViewById(R.id.applyServiceSpinner)).getSelectedItem().toString();
         Intent applyService = new Intent(SearchAddress_Activity.this,ServiceApplicationForm_Activity.class);
         applyService.putExtra("serviceName", service);
+        applyService.putExtra("branchId", id);
+        applyService.putExtra("customerName", customerName);
         startActivity(applyService);
     }
 
@@ -83,8 +87,8 @@ public class SearchAddress_Activity extends AppCompatActivity {
         if (reviewTextView.getText().toString().trim().equals(""))
             Toast.makeText(SearchAddress_Activity.this,"Please write a review before submitting", Toast.LENGTH_SHORT).show();
         else{
-            databaseBranches.child(id).child("reviews").child(reviewId).child("reviewText").setValue(reviewTextView.getText().toString(),0);
-            databaseBranches.child(id).child("reviews").child(reviewId).child("reviewRating").setValue(ratingBar,1);
+            databaseBranches.child(id).child("reviews").child(reviewId).child("reviewText").setValue(reviewTextView.getText().toString());
+            databaseBranches.child(id).child("reviews").child(reviewId).child("reviewRating").setValue(ratingBar);
             Toast.makeText(SearchAddress_Activity.this,"Thank you for the review", Toast.LENGTH_SHORT).show();
         }
     }

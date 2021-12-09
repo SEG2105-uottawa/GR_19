@@ -165,45 +165,76 @@ public class ServiceApplicationForm_Activity extends AppCompatActivity {
 
     public void submitRequest(View view){
         ArrayList<String> customerFields = new ArrayList<String>();
-        if (firstNameEditText.isShown())
+        ArrayList<String> requirements = new ArrayList<String>();
+        if (firstNameEditText.isShown()){
             customerFields.add(firstNameEditText.getText().toString());
-        if (lastNameEditText.getVisibility() == View.VISIBLE)
+            requirements.add("First Name");
+        }
+        if (lastNameEditText.getVisibility() == View.VISIBLE){
             customerFields.add(lastNameEditText.getText().toString());
-        if (ageEditText.getVisibility() == View.VISIBLE)
+            requirements.add("Last Name");
+        }
+        if (ageEditText.getVisibility() == View.VISIBLE){
             customerFields.add(ageEditText.getText().toString());
-        if (homeAddressEditText.getVisibility() == View.VISIBLE)
+            requirements.add("Age");
+        }
+        if (homeAddressEditText.getVisibility() == View.VISIBLE){
             customerFields.add(homeAddressEditText.getText().toString());
-        if (emailEditText.getVisibility() == View.VISIBLE)
+            requirements.add("Home Address");
+        }
+        if (emailEditText.getVisibility() == View.VISIBLE){
             customerFields.add(emailEditText.getText().toString());
-        if (license.getVisibility() == View.VISIBLE)
+            requirements.add("Email");
+        }
+        if (license.getVisibility() == View.VISIBLE){
             customerFields.add(license.getSelectedItem().toString());
-        if (preferredCarTypeEditText.getVisibility() == View.VISIBLE)
+            requirements.add("License");
+        }
+        if (preferredCarTypeEditText.getVisibility() == View.VISIBLE){
             customerFields.add(preferredCarTypeEditText.getText().toString());
+            requirements.add("Preferred Car Type");
+        }
         if (pickupDate.getVisibility() == View.VISIBLE) {
             String pickupDateS = (yearPickupSpinner.getSelectedItem().toString() + "/" + monthPickupSpinner.getSelectedItem().toString() + "/" + dayPickupSpinner.getSelectedItem().toString());
             customerFields.add(pickupDateS);
+            requirements.add("Pickup Date");
         }
         if (returnDate.getVisibility() == View.VISIBLE){
             String returnDateS = (yearReturnSpinner.getSelectedItem().toString() + "/" + monthReturnSpinner.getSelectedItem().toString() + "/" + dayReturnSpinner.getSelectedItem().toString());
             customerFields.add(returnDateS);
+            requirements.add("Return Date");
         }
-        if (areaOfUseEditText.getVisibility() == View.VISIBLE)
+        if (areaOfUseEditText.getVisibility() == View.VISIBLE){
             customerFields.add(areaOfUseEditText.getText().toString());
-        if (startLocationEditText.getVisibility() == View.VISIBLE)
+            requirements.add("Area of Use");
+        }
+        if (startLocationEditText.getVisibility() == View.VISIBLE){
             customerFields.add(startLocationEditText.getText().toString());
-        if (destinationEditText.getVisibility() == View.VISIBLE)
+            requirements.add("Start Location");
+        }
+        if (destinationEditText.getVisibility() == View.VISIBLE){
             customerFields.add(destinationEditText.getText().toString());
-        if (numberOfMoversEditText.getVisibility() == View.VISIBLE)
+            requirements.add("Destination");
+        }
+        if (numberOfMoversEditText.getVisibility() == View.VISIBLE){
             customerFields.add(numberOfMoversEditText.getText().toString());
-        if (numberOfItemsEditText.getVisibility() == View.VISIBLE)
+            requirements.add("Number of Movers");
+        }
+        if (numberOfItemsEditText.getVisibility() == View.VISIBLE){
             customerFields.add(numberOfItemsEditText.getText().toString());
+            requirements.add("Number of Items");
+        }
 
-        DatabaseReference serviceRequest = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("requests");
-        String id = serviceRequest.push().getKey();
         Bundle extras = getIntent().getExtras();
+        String customerName = extras.getString("customerName");
+        String branchId = extras.getString("branchId");
+        DatabaseReference serviceRequest = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("branches/"+branchId + "/requests");
+        String id = serviceRequest.push().getKey();
         String serviceName = extras.getString("serviceName");
         serviceRequest.child(id).child("requestType").setValue(serviceName);
+        serviceRequest.child(id).child("customerName").setValue(customerName);
         serviceRequest.child(id).child("listOfRequirements").setValue(customerFields);
+        serviceRequest.child(id).child("requirementNames").setValue(requirements);
         Toast.makeText(ServiceApplicationForm_Activity.this,"Submitted Service Request", Toast.LENGTH_SHORT).show();
     }
 }
