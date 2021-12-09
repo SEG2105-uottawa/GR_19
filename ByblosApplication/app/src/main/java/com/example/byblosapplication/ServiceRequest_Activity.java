@@ -17,6 +17,7 @@ public class ServiceRequest_Activity extends AppCompatActivity {
     DatabaseReference reviewsDatabase;
     DatabaseReference branchDatabase;
     String selected;
+    Spinner requestSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,7 @@ public class ServiceRequest_Activity extends AppCompatActivity {
         branchDatabase = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("branches");
         Bundle extras = getIntent().getExtras();
         String branchAddress = extras.getString("address");
-        Spinner requestSpinner = (Spinner) findViewById(R.id.requestSpinner);
+        requestSpinner = (Spinner) findViewById(R.id.requestSpinner);
 
         ArrayList<String> listOfRequirements = new ArrayList<String>();
 
@@ -64,5 +65,13 @@ public class ServiceRequest_Activity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void OnAccept(View view){
+        Toast.makeText(ServiceRequest_Activity.this,"Accepted", Toast.LENGTH_SHORT).show();
+    }
+
+    public void OnReject(View view){
+        Toast.makeText(ServiceRequest_Activity.this,"Rejected", Toast.LENGTH_SHORT).show();
     }
 }
