@@ -23,7 +23,7 @@ public class SearchHours_Activity extends AppCompatActivity {
         String endTimeStr = extras.getString("endTimeStr");
         databaseBranches = FirebaseDatabase.getInstance("https://seg-2105-group-19-default-rtdb.firebaseio.com/").getReference("branches");
         LinearLayout branchesLayout = (LinearLayout) findViewById(R.id.workingBranchesLayout);
-        ((TextView)findViewById(R.id.hoursTextView)).setText("Search results for +\"" +startTimeStr + "-" + endTimeStr+"\"");
+        ((TextView)findViewById(R.id.hoursTextView)).setText("Search results for \"" +startTimeStr + "-" + endTimeStr+"\"");
 
         databaseBranches.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
